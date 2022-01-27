@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div{border: 1px solid red}
+        .prepend{border:1px dotted green}
+        .append{border:1px dotted blue}
+    </style>
+
+    <script src="resources/js/jquery-3.6.0.min(compressed).js"></script>
+
+    <script>
+        $(function(){
+            var cnt = 0
+            $("button:eq(0)").click(function(){
+                // <p> : 새로운 p 만들어라  (document.createElement("p") 와 같은 원리) / "div" 바로 밑에 (자식) 만들어짐
+                $("div").prepend($("<p>").addClass("prepend").text("prepend" + (++cnt)))
+            })
+            $("button:eq(1)").click(function(){
+                $("div").append($("<p>").addClass("append").text("append"))
+            })
+            $("button:eq(2)").click(function(){
+                $("div").html("<b>html 요소를 바꾼다. </b>")   // document ; div 태그 안에 html 속 부분을 넣게 됨->  출력 : html 요소를 바꾼다. (진하게 나옴)
+            })
+            $("button:eq(3)").click(function(){
+                $("div").text("<b>text 요소를 바꾼다. </b>")  // 문자열 -> 출력 : <b>text 요소를 바꾼다. </b>  (진하게 나오지 x)
+            })
+        })
+    </script>
+
+</head>
+<body>
+    
+    <button>prepend</button>
+    <button>append</button>
+    <button>html</button>
+    <button>txt</button>
+
+    <div>
+        <p>내부 삽입1</p>
+        <p>내부 삽입2</p>
+    </div>
+
+
+</body>
+</html>

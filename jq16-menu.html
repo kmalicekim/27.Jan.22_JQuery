@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box{border: 2px solid red}
+        #menu{background-color: skyblue; text-align: right;}
+        a{text-decoration: none; font-size: 20px;}
+        #menu div{display: inline-block; margin-right: 10px;}
+    </style>
+
+    <script src="resources/js/jquery-3.6.0.min(compressed).js"></script>
+
+    <script>
+        $(function(){
+            // $("<div>") == document.createElement("div")
+            var $box = $("<div>").addClass("box")
+            $(".sub_menu:first").wrap($box)   // 앞 부분을 뒤 괄호로 감싸주어라 --> $box 가 부모요소가 됨
+            // ---> 밑과 같이 됨
+            // <div class="box">
+            //     <div class="sub_menu">...</div>
+
+            $(".sub_menu").click(function(){
+                $(".sub_menu").each(function(){
+                    if($(this).parent().is(".box")){
+                        $(this).unwrap(".box")
+                    }
+                })
+                $(this).wrap($box)
+            })
+
+            /$("a").wrapInner("<span></span>")   // 해당 target의 자식 요소들을 뒤의 것으로 포장해라
+
+            $("pre").wrapAll("<b></b>")  
+            // pre태그 전부를 찾아서 전체를 <b></b>로 감싸줘 
+            /* <b>
+                 <pre>1</pre>
+                 <pre>2</pre>
+                 <pre>3</pre>
+               </b>
+            */
+        })
+    </script>
+
+</head>
+<body>
+
+    <div id="menu">
+        <div class="sub_menu">
+            <a href="#"><span>국비지원</span></a>  <!-- a href="#" : 아무것도 실행하지는 않지만 페이지 최상단으로 이동-->
+        </div>
+        <div class="sub_menu">
+            <a href="#">훈련검색</a>
+        </div>
+        <div class="sub_menu">
+            <a href="#">기관검색</a>
+        </div>
+        <div class="sub_menu">
+            <a href="#">질문답변</a>
+        </div>
+        <div class="sub_menu">
+            <a href="#">과정후기</a>
+        </div>
+    </div>
+
+    <pre>1</pre>
+    <pre>2</pre>
+    <pre>3</pre>
+    
+</body>
+</html>

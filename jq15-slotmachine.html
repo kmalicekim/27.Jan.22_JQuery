@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        img{
+            width: 150px; 
+            height: 150px;
+            float: left
+        }
+        #menubox{position: relative}
+        #menu{overflow: auto;}
+        .sel{
+            width: 140px;
+            height: 140px;
+            border: 5px dotted red;
+            position: absolute;
+            left: 300px
+        }
+        button{
+            width: 150px;
+            height: 50px;
+            margin-left: 300px;
+        }
+    </style>
+
+    <script src="resources/js/jquery-3.6.0.min(compressed).js"></script>
+
+    <script>
+        $(function(){
+            // .appendTo(target)  --> 자식요소중에 가장 뒤로 이동 
+            setInterval(function(){
+                var div = $("#menu")
+                $(".active").first().appendTo(div)  
+            }, 100)
+            // active라는 클래스를 가진 애들 중 첫번째 아이를 div 자식요소로 붙임.
+            // 지금은 이미 만들어진 애들을 다시 뒤로 붙이는 것이기 때문에 원래 자리에 있던 게 맨 뒤로 자리 이동함. 
+
+            $("button").click(function(){
+                $("img").toggleClass("active")     // "active"말고 아무 클래스 이름 지정해주면 됨
+                if ($("button").text() == "start"){
+                    $("button").text("stop")
+                }else{
+                    $("button").text("start")
+                }
+            })
+        })
+
+        // ===============================================
+        // setInterval() : The method continues calling the function 
+        // until clearInterval() is called, or the window is closed.
+        // 1 second = 1000 milliseconds.
+        // ex) setInterval(function () {element.innerHTML += "Hello"}, 1000) 
+        //      -> Display "Hello" every second (1000 milliseconds)
+        
+        
+        // $( 'p' ).toggleClass( 'xyz' ) 
+        // -> p 요소에 xyz 클래스가 없으면 추가하고, 있으면 제거
+
+
+    </script>
+
+
+</head>
+<body>
+    
+    <h1>SlotMachine</h1>
+
+    <div id="menubox">
+        <div class="sel"></div>
+
+        <div id="menu">
+            <img src="resources/imgs/img01.jpg" alt="img01">
+            <img src="resources/imgs/img02.jpg" alt="img02">
+            <img src="resources/imgs/img03.jpg" alt="img03">
+            <img src="resources/imgs/img04.jpg" alt="img04">
+        </div>
+
+        <button>start</button>
+    </div>
+
+</body>
+</html>
